@@ -1,4 +1,7 @@
-// Global app controller
-import x from './test';
-const y = 23;
-console.log(x+"THis is the day this is the day"+y);
+import str from "./models/Search";
+
+import {add, mul, ID} from './views/searchView';
+import * as searchView from './views/searchView';
+
+console.log(`Usign imported functions! ${add(ID,2)} and ${mul(ID,2)}`);
+console.log(searchView.add(ID,2));
