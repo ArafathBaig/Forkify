@@ -28,4 +28,69 @@ export default class Recipe{
     calcServings(){
         this.servings = 4;
     }
+
+    parseIngredients(){
+        const unitsLong = ['tablespoons', 'tablespoon','ounces', 'ounce', 'teaspoons','teaspoon', 'cups','pounds'];
+        const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz' , 'tsp','tsp' , 'cup', 'pound'];
+
+        const newIngredients = this.ingredients.map(el => {
+            //Uniform units
+            let ingredient = el.toLowerCase();
+            unitsLong.forEach((unit , i) => {
+                ingredient = ingredient.replace(unit, unitsShort[i]);
+            })
+
+            //Remove paranthesis
+            ingredient = ingredient.replace(/ *\([^)]*\) */g, ' ');
+
+            //Parse igredients int o count, unit and igredient
+            const arrIng = ingredient.split(' ');
+            const unitIndex = arrIng.findIndex(el2 => unitsShort.includes(el2));
+
+            let objIngredient;
+            if(unitIndex > -1){
+                //There is a unit
+                const arrCount = arrIng.slice(0, unitIndex);
+                let count ;
+                if(arrCount.length === 1){
+                    count = eval(arrIng[0].replace('-', '+'));
+                }else {
+                    count = eval(arrIng.slice(0,unitIndex).join('+'));
+                }
+
+                objIngredient = {
+                    count,
+                    unit : arrIng[unitIndex],
+                    ingredient : arrIng.slice(unitIndex+1).join(' ')
+                }
+
+            }else if(parseInt(arrIng[0], 10)){
+                //There is no unit but first element is number
+                objIngredient = {
+                    count : parseInt(arrIng[0], 10),
+                    unit : '',
+                    ingredient : arrIng.slice(1).join(' ')
+                }
+
+            }else if(unitIndex === -1){
+                //there is no unit and no number
+                objIngredient = {
+                    count : 1,
+                    unit : '',
+                    ingredient
+                } 
+
+            }
+
+
+
+
+
+            return objIngredient;
+
+
+        });
+
+        this.ingredients = newIngredients;
+    }
 }
