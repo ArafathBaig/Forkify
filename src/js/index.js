@@ -1,6 +1,4 @@
 // Global app controller
-import x from './test'
+import num from './test'
 
-console.log(x)
-
-console.log(`I imported ${x} from another module called test.js`)
+console.log(`I imported ${num} from another module called test.js`)

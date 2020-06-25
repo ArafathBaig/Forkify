@@ -19,10 +19,16 @@
   },
   "homepage": "https://github.com/ArafathBaig/Forkify#readme",
   "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
     "html-webpack-plugin": "^4.3.0",
     "webpack": "^4.2.0",
-    "webpack-cli": "^3.3.11",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
+  }
 }
