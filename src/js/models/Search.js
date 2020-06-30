@@ -5,12 +5,12 @@ class Search {
         this.query = query
     }
 
-    async getResult(query){
+    async getResult(){
 
     try{
-    const res = await axios(`https://forkify-api.herokuapp.com/api/search?q=${query}`)
+    const res = await axios(`https://forkify-api.herokuapp.com/api/search?q=${this.query}`)
     this.result = res.data.recipes
-    console.log(this.result)
+    // console.log(this.result)
     }catch(e){
         alert(e)
     }
