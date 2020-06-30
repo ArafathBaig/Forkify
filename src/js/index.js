@@ -1,16 +1,4 @@
-const axios = require('axios')
+const { Search } = require('./models/Search')
 
-async function getResult(query){
-
-    try{
-    const res = await axios(`https://forkify-api.herokuapp.com/api/search?q=${query}`)
-    const recipes = res.data.recipes
-    console.log(recipes)
-    }catch(e){
-        alert(e)
-    }
-}
-
-getResult('pizza')
-
-// Search api = https://forkify-api.herokuapp.com/api/search
+const search = new Search("pizza");
+search.getResult("pizza")
