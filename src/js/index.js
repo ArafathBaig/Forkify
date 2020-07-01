@@ -1,10 +1,11 @@
 const { Search } = require('./models/Search')
-
+const{ elements } = require('./views/base')
+const searchView = require('./views/searchView')
 //Global State
 const state = {}
 
 const controlSearch= async () => {
-    const query = 'pizza'
+    const query = searchView.getInput()
 
     if(query){
         state.search = new Search(query)
@@ -15,7 +16,7 @@ const controlSearch= async () => {
     }
 }
 
-document.querySelector('.search').addEventListener('submit', e => {
+elements.searchForm.addEventListener('submit', e => {
     e.preventDefault()
     controlSearch();
 })
