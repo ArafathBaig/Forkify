@@ -1,5 +1,5 @@
 const { Search } = require('./models/Search')
-const{ elements } = require('./views/base')
+const{ elements, renderLoader,clearLoader } = require('./views/base')
 const searchView = require('./views/searchView')
 //Global State
 const state = {}
@@ -12,8 +12,10 @@ const controlSearch= async () => {
 
         searchView.clearInput()
         searchView.clearResults()
+        renderLoader(elements.serachRes)
 
         await state.search.getResult()
+        clearLoader()
 
         searchView.renderResults(state.search.result)
     }
