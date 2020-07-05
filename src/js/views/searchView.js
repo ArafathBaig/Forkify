@@ -8,6 +8,7 @@ const clearInput = () => {
 
 const clearResults = () => {
     elements.searchResultList.innerHTML =""
+    elements.searchResPages.innerHTML= ""
 }
 
 const limitRecipeTitle = (title, limit = 17) => {
@@ -92,7 +93,7 @@ const renderResults = (recipes, page = 1, resultPerPage = 10) => {
     const start = (page - 1) * resultPerPage;
     const end = page * resultPerPage;
 
-    recipes.slice(start, end).forEach(renderRecipes);
+    recipes.slice(start, end).forEach(renderRecipes)
 
     //render pagination buttons
     renderButtons(page,recipes.length,resultPerPage);
