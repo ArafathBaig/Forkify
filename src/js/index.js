@@ -2,6 +2,8 @@ const { Search } = require('./models/Search')
 const{ elements, renderLoader,clearLoader } = require('./views/base')
 const searchView = require('./views/searchView')
 const { clearResults } = require('./views/searchView')
+const {Recipe } =require('./models/Recipe')
+
 //Global State
 const state = {}
 
@@ -36,3 +38,7 @@ elements.searchResPages.addEventListener('click', e=> {
         searchView.renderResults(state.search.result,goToPage)
     }
 })
+
+
+const r = new Recipe(47746)
+r.getRecipe()
