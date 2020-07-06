@@ -17,11 +17,17 @@ const controlSearch= async () => {
         searchView.clearResults()
         renderLoader(elements.serachRes)
 
+        try{
+
         await state.search.getResult()
         clearLoader()
 
         searchView.renderResults(state.search.result)
+    }catch(e){
+        alert('Something went wrong with the search')
+        clearLoader()
     }
+}
 }
 
 elements.searchForm.addEventListener('submit', e => {
@@ -39,6 +45,28 @@ elements.searchResPages.addEventListener('click', e=> {
     }
 })
 
+const controlRecipe = async () => {
+    const id = window.location.hash.replace('#','');
+    console.log(id)
 
-const r = new Recipe(47746)
-r.getRecipe()
+    if(id){
+        state.recipe = new Recipe(id)
+        
+        try{
+            
+        await state.recipe.getRecipe()
+
+        state.recipe.calculateTime()
+        state.recipe.calculateServings()
+
+        console.log(state.recipe)
+        }catch(e){
+            console.log('Error processing recipe')
+        }
+    }
+}
+
+
+
+
+['hashchange','load'].forEach(event => window.addEventListener(event,controlRecipe))
