@@ -3,7 +3,8 @@ const elements ={
     searchForm: document.querySelector('.search'),
     serachRes : document.querySelector('.results'),
     searchResultList: document.querySelector('.results__list'),
-    searchResPages: document.querySelector('.results__pages')
+    searchResPages: document.querySelector('.results__pages'),
+    recipe: document.querySelector('.recipe')
 };
 
 const elementStrings ={

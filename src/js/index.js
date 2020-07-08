@@ -3,6 +3,7 @@ const{ elements, renderLoader,clearLoader } = require('./views/base')
 const searchView = require('./views/searchView')
 const { clearResults } = require('./views/searchView')
 const {Recipe } =require('./models/Recipe')
+const recipeView = require('./views/recipeView')
 
 //Global State
 const state = {}
@@ -51,6 +52,8 @@ const controlRecipe = async () => {
     console.log(id)
 
     if(id){
+        recipeView.clearRecipe()
+        renderLoader(elements.recipe)
         state.recipe = new Recipe(id)
               
 
@@ -58,9 +61,11 @@ const controlRecipe = async () => {
             
         await state.recipe.getRecipe()
         state.recipe.parseIngredients()
-
         state.recipe.calculateTime()
         state.recipe.calculateServings()
+
+        clearLoader()
+        recipeView.renderRecipe(state.recipe)
 
         console.log(state.recipe)
         }catch(e){
