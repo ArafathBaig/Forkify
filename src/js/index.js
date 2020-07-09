@@ -2,7 +2,7 @@ const { Search } = require('./models/Search')
 const{ elements, renderLoader,clearLoader } = require('./views/base')
 const searchView = require('./views/searchView')
 const { clearResults } = require('./views/searchView')
-const {Recipe } =require('./models/Recipe')
+const {Recipe}  =require('./models/Recipe')
 const recipeView = require('./views/recipeView')
 
 //Global State
@@ -49,11 +49,14 @@ elements.searchResPages.addEventListener('click', e=> {
 
 const controlRecipe = async () => {
     const id = window.location.hash.replace('#','');
-    console.log(id)
+    
 
     if(id){
         recipeView.clearRecipe()
         renderLoader(elements.recipe)
+
+        if(state.search) {searchView.highlightSelected(id)}
+        
         state.recipe = new Recipe(id)
               
 

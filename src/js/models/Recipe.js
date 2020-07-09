@@ -1,6 +1,7 @@
 const axios = require('axios')
 
 class Recipe{
+    
     constructor(id){
         this.id = id
     }
