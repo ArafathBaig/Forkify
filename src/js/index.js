@@ -4,6 +4,7 @@ const searchView = require('./views/searchView')
 const { clearResults } = require('./views/searchView')
 const {Recipe}  =require('./models/Recipe')
 const recipeView = require('./views/recipeView')
+const {List} = require('./models/List')
 
 //Global State
 const state = {}
@@ -70,7 +71,7 @@ const controlRecipe = async () => {
         clearLoader()
         recipeView.renderRecipe(state.recipe)
 
-        console.log(state.recipe)
+        
         }catch(e){
             console.log('Error processing recipe')
         }
@@ -94,5 +95,6 @@ elements.recipe.addEventListener('click', e => {
  
     }
 
-    console.log(state.recipe)
 })
+
+window.l = new List()
