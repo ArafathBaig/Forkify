@@ -1,6 +1,6 @@
 class Likes{
     constructor(){
-        this.liskes = [];
+        this.likes = [];
     }
 
     addLike(id, title, author, img){
