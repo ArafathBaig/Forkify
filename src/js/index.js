@@ -7,6 +7,7 @@ const recipeView = require('./views/recipeView')
 const {List} = require('./models/List')
 const listView = require('./views/listView')
 const {Likes} = require('./models/Likes')
+const likesView = require('./views/likesView')
 
 //Global State
 const state = {}
@@ -74,7 +75,7 @@ const controlRecipe = async () => {
         state.recipe.calculateServings()
 
         clearLoader()
-        recipeView.renderRecipe(state.recipe)
+        recipeView.renderRecipe(state.recipe, state.likes.isLiked(id))
 
         
         }catch(e){
@@ -82,6 +83,7 @@ const controlRecipe = async () => {
         }
     }
 }
+
 
 
 ['hashchange','load'].forEach(event => window.addEventListener(event,controlRecipe))
@@ -109,6 +111,9 @@ elements.shopping.addEventListener('click', e => {
     }
 })
 
+state.likes = new Likes()
+likesView.toggleLikeMenu(state.likes.getNumLikes)
+
 const controlLike = () => {
 
     if(!state.likes) state.likes = new Likes()
@@ -116,14 +121,18 @@ const controlLike = () => {
     if(!state.likes.isLiked(currentID)){
         const newLike = state.likes.addLike(currentID, state.recipe.title, state.recipe.author, state.recipe.img)
 
+        likesView.toggleLikeBtn(true)
+        likesView.renderLike(newLike)
         console.log(state.likes)
     }else{
 
         state.likes.deleteLike(currentID)
-
-        console.log(state.likes)
+        likesView.toggleLikeBtn(false)
+        likesView.deleteLike(currentID)
 
     }
+
+    likesView.toggleLikeMenu(state.likes.getNumLikes)
 }
 
 
