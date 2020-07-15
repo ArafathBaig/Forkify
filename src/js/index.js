@@ -12,7 +12,7 @@ const likesView = require('./views/likesView')
 //Global State
 const state = {}
 
-window.state = state;
+
 
 
 const controlSearch= async () => {
@@ -165,4 +165,3 @@ elements.recipe.addEventListener('click', e => {
 
 })
 
-window.l = new List()
